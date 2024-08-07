@@ -10,6 +10,7 @@ module.exports = function (config) {
       require('karma-chrome-launcher'),
       require('karma-jasmine-html-reporter'),
       require('karma-coverage'),
+      require('karma-junit-reporter'),
       require('@angular-devkit/build-angular/plugins/karma')
     ],
     client: {
@@ -32,7 +33,12 @@ module.exports = function (config) {
         { type: 'text-summary' }
       ]
     },
-    reporters: ['progress', 'kjhtml'],
+    reporters: ['progress', 'kjhtml', 'junit'],
+    junitReporter: {
+      outputDir: 'test-results', // Directory where JUnit reports will be saved
+      outputFile: 'TEST-results.xml', // Name of the JUnit report file
+      useBrowserName: false
+    },
     browsers: ['Chrome'],
     restartOnFileChange: true
   });
